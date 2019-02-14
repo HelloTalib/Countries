@@ -24,27 +24,30 @@
   </div>
 </template>
 <script>
-import firebase from 'firebase'
+import firebase from "firebase";
 export default {
   name: "signup",
   data() {
     return {
       email: null,
       password: null,
-      feedback:null
+      feedback: null
     };
   },
-  methods:{
-    signup(){
-      firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then(user => {
-       this.$router.push({name:'Home'})
-      }).catch(err => {
-        this.feedback = err.message
-      })
+  methods: {
+    signup() {
+      firebase
+        .auth()
+        .createUserWithEmailAndPassword(this.email, this.password)
+        .then(() => {
+          this.$router.push({ name: "Home" });
+        })
+        .catch(err => {
+          this.feedback = err.message;
+        });
     }
   }
-
-}
+};
 </script>
 
 

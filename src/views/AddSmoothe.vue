@@ -10,7 +10,7 @@
         <input type="text" name="title" v-model="title">
         <label for="title">Country Name:</label>
       </div>
-            <div class="field center-align">
+      <div class="field center-align">
         <button class="btn pink">Add Country</button>
       </div>
     </form>
@@ -39,9 +39,6 @@ export default {
           })
           .then(() => {
             this.$router.push("/");
-          })
-          .catch(err => {
-            console.log(err);
           });
       }
     }

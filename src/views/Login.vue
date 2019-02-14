@@ -32,16 +32,20 @@ export default {
     return {
       email: null,
       password: null,
-      feedback: null,
+      feedback: null
     };
   },
   methods: {
-    login(){
-      firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(user => {
-       this.$router.push({name:'Home'})
-      }).catch(err => {
-        this.feedback= (err.message)
-      })
+    login() {
+      firebase
+        .auth()
+        .signInWithEmailAndPassword(this.email, this.password)
+        .then(() => {
+          this.$router.push({ name: "Home" });
+        })
+        .catch(err => {
+          this.feedback = err.message;
+        });
     }
   }
 };
