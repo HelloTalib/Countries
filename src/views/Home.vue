@@ -1,23 +1,23 @@
 <template>
   <div class="index container">
-    <div class="card" v-for="smoothie in smoothies" :key="smoothie.id">
+    <div class="card" v-for="country in countries" :key="country.id">
       <div class="card-content">
         <div>
           <router-link
             class="edit"
-            :to="{name: 'EditSmoothe', params:{smoothie_id: smoothie.smoothies_id}}"
+            :to="{name: 'EditSmoothe', params:{country_id: country.countries_id}}"
           >
             <i class="material-icons right">visibility</i>
           </router-link>
         </div>
-        <h2 class="indigo-text">{{ smoothie.title }}</h2>
+        <h2 class="indigo-text">{{ country.title }}</h2>
         <ul class="items">
-          <li v-for="(ing, index) in smoothie.items" :key="index">
+          <li v-for="(ing, index) in country.items" :key="index">
             <span class="chip">{{ ing }}</span>
           </li>
         </ul>
         <div class="fixed-action-btn">
-          <router-link :to="{name:'AddSmoothe'}" class="btn-floating btn-large halfway-fab indigo">
+          <router-link :to="{name:'AddCountry'}" class="btn-floating btn-large halfway-fab indigo">
             <i class="material-icons">add</i>
           </router-link>
         </div>
@@ -32,15 +32,15 @@ export default {
   name: "Index",
   data() {
     return {
-      smoothies: []
+      countries: []
     };
   },
   created() {
-    db.collection("smoothies").onSnapshot(res => {
+    db.collection("countries").onSnapshot(res => {
       const changes = res.docChanges();
       changes.forEach(change => {
         if (change.type === "added") {
-          this.smoothies.push({
+          this.countries.push({
             ...change.doc.data(),
             id: change.doc.id
           });

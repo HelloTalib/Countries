@@ -2,8 +2,8 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import firebase from 'firebase';
 import Home from './views/Home.vue'
-import AddSmoothe from './views/AddSmoothe.vue'
-import EditSmoothe from './views/EditSmoothe.vue'
+import AddCountry from './views/AddCountry.vue'
+import EditCountry from './views/EditCountry.vue'
 import Login from './views/Login.vue'
 import Signup from './views/Signup.vue'
 
@@ -23,16 +23,16 @@ const router = new Router({
     },
     {
       path: '/add',
-      name: 'AddSmoothe',
-      component: AddSmoothe,
+      name: 'AddCountry',
+      component: AddCountry,
       meta: {
         requiresAuth: true
       }
     },
     {
-      path: '/edit/:smoothie_id',
-      name: 'EditSmoothe',
-      component: EditSmoothe,
+      path: '/edit/:country_id',
+      name: 'EditCountry',
+      component: EditCountry,
       meta: {
         requiresAuth: true
       }

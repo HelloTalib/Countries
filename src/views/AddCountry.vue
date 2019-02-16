@@ -1,9 +1,9 @@
 <template>
-  <div class="add-smoothie container z-depth-1">
+  <div class="add-country container z-depth-1">
     <h2 class="center-align indigo-text">Add Country</h2>
-    <form @submit.prevent="addSmoothie">
+    <form @submit.prevent="addcountry">
       <div class="input-field title">
-        <input type="text" name="id" v-model="smoothies_id">
+        <input type="text" name="id" v-model="country_id">
         <label for="id">Country code:</label>
       </div>
       <div class="input-field title">
@@ -20,22 +20,22 @@
 <script>
 import db from "@/firebase/init";
 export default {
-  name: "AddSmoothie",
+  name: "AddCountry",
   data() {
     return {
       title: null,
       items: [],
-      smoothies_id: null
+      country_id: null
     };
   },
   methods: {
-    addSmoothie() {
+    addcountry() {
       if (this.title) {
-        db.collection("smoothies")
+        db.collection("countries")
           .add({
             title: this.title,
             items: this.items,
-            smoothies_id: this.smoothies_id
+            country_id: this.country_id
           })
           .then(() => {
             this.$router.push("/");
@@ -47,20 +47,20 @@ export default {
 </script>
 
 <style>
-.add-smoothie {
+.add-country {
   margin-top: 60px;
   padding: 20px;
   max-width: 500px;
 }
-.add-smoothie h2 {
+.add-country h2 {
   font-size: 2em;
   margin: 20px auto;
 }
-.add-smoothie .field {
+.add-country .field {
   margin: 20px auto;
   position: relative;
 }
-.add-smoothie .delete {
+.add-country .delete {
   position: absolute;
   right: 0;
   bottom: 16px;

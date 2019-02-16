@@ -1,13 +1,13 @@
 <template>
-  <div class="add-smoothie container z-depth-1">
+  <div class="add-country container z-depth-1">
     <h2 class="center-align indigo-text">Edit Country Name</h2>
-    <form @submit.prevent="editSmoothie">
+    <form @submit.prevent="editCountry">
       <div class="input-field title">
-        <input type="text" name="id" v-model="smoothie.smoothies_id">
+        <input type="text" name="id" v-model="country.countries_id">
         <label for="code">Country Code:</label>
       </div>
       <div class="input-field title">
-        <input type="text" name="title" v-model="smoothie.title">
+        <input type="text" name="title" v-model="country.title">
         <label for="title">Cantry Name:</label>
       </div>
       <div class="field center-align">
@@ -20,20 +20,20 @@
 <script>
 import db from "@/firebase/init";
 export default {
-  name: "EditSmoothie",
+  name: "EditCountry",
   data() {
     return {
-      smoothie: null
+      country: null
     };
   },
   methods: {
-    editSmoothie() {
-      if (this.smoothie.title) {
-        db.collection("smoothies")
-          .doc(this.smoothie.id)
+    editCountry() {
+      if (this.country.title) {
+        db.collection("countries")
+          .doc(this.country.id)
           .update({
-            title: this.smoothie.title,
-            smoothies_id: this.smoothie.smoothies_id
+            title: this.country.title,
+            country_id: this.country.country_id
           })
           .then(() => {
             this.$router.push("/");
@@ -43,12 +43,12 @@ export default {
   },
   created() {
     let ref = db
-      .collection("smoothies")
-      .where("smoothies_id", "==", this.$route.params.smoothie_id);
+      .collection("countries")
+      .where("countries_id", "==", this.$route.params.country_id);
     ref.get().then(snapshot => {
       snapshot.forEach(doc => {
-        this.smoothie = doc.data();
-        this.smoothie.id = doc.id;
+        this.country = doc.data();
+        this.country.id = doc.id;
       });
     });
   }
